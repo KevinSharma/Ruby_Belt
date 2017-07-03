@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Root Page</title>
+        <style media="screen">
+            div {
+                display: inline-block;
+            }
+            .container {
+                text-align: left;
+                vertical-align: top;
+            }
+            .register {
+                text-align: right;
+                vertical-align: top;
+            }
+            h3 {
+                color: green;
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+        <h3> Welcome!</h3>
+        <%= @current_user.id %>
+        <div class="container">
+        <h1>Login</h1>
+          <div class="login">
+            <form action="users/" method="post">
+              <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+              <input type="text" name="[user]first_name" value="" placeholder="First Name">
+              <p></p>
+              <input type="text" name="[user]email" value="" placeholder="example@example.com">
+              <p></p>
+              <input type="text" name="[user]password" value="" placeholder="Enter Password">
+              <p></p>
+         
+              <input type="submit" name="submit" value="submit">
+            </form>
+          </div>
+        </div>
+         
+        <% if !flash[:error].blank?%>
+        <div class="emailError">
+          <%=flash[:error]%>
+        </div>
+        <%end%>
+
+        <div class="col-md-6 col-md-offset-3">
+        <div class="register">
+            <h1> Register </h1>
+                <form action="/new" method="post">
+                    <input type="hidden" method="post">
+                    <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+                    Name: <input type="text" placeholder="First Name"name="name" value="">
+                    <p></p>
+                    Alias: <input type="text" placeholder="Alias" name="alias" value="">
+                    <p></p>
+                    Email: <input type="text" placeholder="example@example.com" name="email" value="">
+                    <p></p>
+                    Password: <input type="text" placeholder="Password" name="password" value="">
+                    <p></p>
+                    <p> *Password should at least be 8 characters</p>
+                    <p></p>
+                    Confirm PW: <input type="text" placeholder="Confirm Password" name="conf_pwd" value="">
+                    <p></p>
+                    <input type="submit" name="" value="Register">
+                </form>
+        </div>
+
+        <p></p>
+    </body>
+</html>
